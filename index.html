@@ -1,20 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>For You ❤️</title>
+<title>Para Ti ❤️</title>
 
 <style>
 body {
     margin: 0;
     padding: 0;
     font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(135deg, #ff9a9e, #fad0c4);
+    background: linear-gradient(135deg, #ff758c, #ff7eb3);
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
+    overflow: hidden;
     text-align: center;
     color: white;
 }
@@ -23,27 +24,27 @@ body {
     background: rgba(255, 255, 255, 0.15);
     padding: 40px;
     border-radius: 20px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(12px);
     box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    max-width: 400px;
+    max-width: 420px;
     animation: fadeIn 2s ease-in-out;
 }
 
 h1 {
-    font-size: 2.5em;
+    font-size: 2.2em;
     margin-bottom: 20px;
 }
 
 p {
-    font-size: 1.2em;
+    font-size: 1.1em;
     line-height: 1.6;
 }
 
 button {
-    margin-top: 25px;
-    padding: 10px 20px;
+    margin-top: 20px;
+    padding: 12px 25px;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     background: white;
     color: #ff4b6e;
     font-size: 1em;
@@ -56,9 +57,23 @@ button:hover {
     color: white;
 }
 
+/* Animación */
 @keyframes fadeIn {
     from {opacity: 0; transform: translateY(20px);}
     to {opacity: 1; transform: translateY(0);}
+}
+
+/* Corazones flotando */
+.heart {
+    position: absolute;
+    bottom: -10px;
+    font-size: 20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(0); opacity: 1;}
+    100% {transform: translateY(-100vh); opacity: 0;}
 }
 </style>
 </head>
@@ -66,24 +81,44 @@ button:hover {
 <body>
 
 <div class="card">
-    <h1>Happy Valentine's Day ❤️</h1>
+    <h1>Feliz 14 ❤️</h1>
     <p>
-          No siempre tengo las palabras perfectas, pero lo que siento por ti es real.
-    Aún en los momentos difíciles, sigues siendo alguien muy especial para mí.
-    No es obligación, no es presión… es cariño sincero.
-    Solo quiero que sepas que aquí estoy, de buena fe, deseando que todo en tu vida
-    mejore y que nunca te sientas sola.
+        No es mucho, pero lo hago de corazón.  
+        No es por obligación, es porque me nace.  
+        Solo quiero que sepas que me importas  
+        y que, incluso en los momentos difíciles,  
+        aquí estoy para ti.
     </p>
 
-    <button onclick="showMessage()">Click Me 💕</button>
+    <button onclick="playMusic()">Escucha esto 🎶</button>
 </div>
 
+<audio id="bgMusic" loop>
+    <source src="music.mp3" type="audio/mpeg">
+</audio>
+
 <script>
-function showMessage() {
-    alert("You make my world brighter every day 💖");
+function playMusic() {
+    document.getElementById("bgMusic").play();
 }
+
+/* Crear corazones automáticamente */
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = Math.random() * 20 + 15 + "px";
+    heart.style.animationDuration = Math.random() * 3 + 4 + "s";
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 6000);
+}
+
+setInterval(createHeart, 500);
 </script>
 
 </body>
 </html>
-
